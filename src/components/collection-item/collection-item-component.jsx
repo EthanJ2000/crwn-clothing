@@ -1,10 +1,14 @@
 import React from "react";
 import "../collection-item/collection-item-styles.scss";
-import CollectionPreview from "../collection-preview/collection-preview-component";
 
-const CollectionItem = ({ id, name, price, imageURL }) => (
+const CollectionItem = ({ id, name, price, imageUrl }) => (
   <div className="collection-item">
-    <div className="image" style={{ backgroundImage: `url(${imageURL})` }} />
+    <div
+      className="image"
+      style={{
+        backgroundImage: `url(${imageUrl})`
+      }}
+    />
     <div className="collection-footer">
       <span className="name">{name}</span>
       <span className="price">{price}</span>
@@ -12,4 +16,4 @@ const CollectionItem = ({ id, name, price, imageURL }) => (
   </div>
 );
 
-export default CollectionPreview;
+export default CollectionItem;
