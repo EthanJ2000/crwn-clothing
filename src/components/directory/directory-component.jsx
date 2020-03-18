@@ -18,27 +18,27 @@ class Directory extends React.Component {
           title: "jackets",
           imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
           id: 2,
-          link: ""
+          link: "jackets"
         },
         {
           title: "sneakers",
           imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
           id: 3,
-          link: ""
+          link: "sneakers"
         },
         {
           title: "womens",
           imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
           size: "large",
           id: 4,
-          link: ""
+          link: "womens"
         },
         {
           title: "mens",
           imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
           size: "large",
           id: 5,
-          link: ""
+          link: "mens"
         }
       ]
     };
