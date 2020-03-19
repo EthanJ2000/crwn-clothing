@@ -3,6 +3,7 @@ import "./App.css";
 import HomePage from "./pages/homepage/homepage-component";
 import { Link, Route } from "react-router-dom";
 import ShopPage from "./pages/shop/shop-component";
+import Header from "./components/header/header-component";
 
 const HatsPage = () => (
   <div>
@@ -38,6 +39,7 @@ function App() {
   return (
     <div>
       {/* <HomePage></HomePage> */}
+      <Header />
       <Route exact path="/" component={HomePage} />
       <Route exact path="/hats" component={HatsPage} />
       <Route exact path="/jackets" component={JacketsPage} />
