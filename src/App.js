@@ -5,6 +5,7 @@ import { Link, Route } from "react-router-dom";
 import ShopPage from "./pages/shop/shop-component";
 import Header from "./components/header/header-component";
 import SignInSignUpPage from "./pages/signin-signup/signin-signup-component";
+import { auth, createUserProfileDocument } from "./firebase/firebase-utils";
 
 const HatsPage = () => (
   <div>
@@ -36,21 +37,56 @@ const MensPage = () => (
   </div>
 );
 
-function App() {
-  return (
-    <div>
-      {/* <HomePage></HomePage> */}
-      <Header />
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/hats" component={HatsPage} />
-      <Route exact path="/jackets" component={JacketsPage} />
-      <Route exact path="/sneakers" component={SneakersPage} />
-      <Route exact path="/womens" component={WomensPage} />
-      <Route exact path="/mens" component={MensPage} />
-      <Route exact path="/shop" component={ShopPage} />
-      <Route exact path="/signin" component={SignInSignUpPage} />
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null
+    };
+  }
+
+  unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <div>
+        {/* <HomePage></HomePage> */}
+        <Header currentUser={this.state.currentUser} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/hats" component={HatsPage} />
+        <Route exact path="/jackets" component={JacketsPage} />
+        <Route exact path="/sneakers" component={SneakersPage} />
+        <Route exact path="/womens" component={WomensPage} />
+        <Route exact path="/mens" component={MensPage} />
+        <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/signin" component={SignInSignUpPage} />
+      </div>
+    );
+  }
 }
 
 export default App;
