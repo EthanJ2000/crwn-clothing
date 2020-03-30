@@ -1,5 +1,4 @@
 import React from "react";
-import "./jackets-styles.scss";
 import SHOP_DATA from "../shop/shop-data";
 import CollectionPreview from "../../components/collection-preview/collection-preview-component";
 

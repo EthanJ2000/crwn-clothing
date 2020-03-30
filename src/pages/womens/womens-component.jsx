@@ -1,5 +1,5 @@
 import React from "react";
-import "./womens-styles.scss";
+// import "./womens-styles.scss";
 import SHOP_DATA from "../shop/shop-data";
 import CollectionPreview from "../../components/collection-preview/collection-preview-component";
 
